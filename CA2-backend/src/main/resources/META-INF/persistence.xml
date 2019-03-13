@@ -9,7 +9,7 @@
     <class>entity.Phone</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://testprogram.dk:3306/CA2_DB"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://testprogram.dk:3306/CA2_DB?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="CA2"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="Kode1234!"/>
