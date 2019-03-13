@@ -6,10 +6,17 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -17,26 +24,62 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author caspe
  */
 @Entity
+@Table(name = "phone")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Phone.findAll", query = "SELECT p FROM Phone p")
+    , @NamedQuery(name = "Phone.findByNumber", query = "SELECT p FROM Phone p WHERE p.number = :number")
+    , @NamedQuery(name = "Phone.findByDescription", query = "SELECT p FROM Phone p WHERE p.description = :description")})
 public class Phone implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "number", nullable = false)
+    private Integer number;
+    @Size(max = 45)
+    @Column(name = "description", length = 45)
+    private String description;
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    @ManyToOne
+    private Person person;
 
-    public Long getId() {
-        return id;
+    public Phone() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Phone(Integer number) {
+        this.number = number;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (number != null ? number.hashCode() : 0);
         return hash;
     }
 
@@ -47,7 +90,7 @@ public class Phone implements Serializable {
             return false;
         }
         Phone other = (Phone) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.number == null && other.number != null) || (this.number != null && !this.number.equals(other.number))) {
             return false;
         }
         return true;
@@ -55,7 +98,7 @@ public class Phone implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Phone[ id=" + id + " ]";
+        return "entity.Phone[ number=" + number + " ]";
     }
     
 }
