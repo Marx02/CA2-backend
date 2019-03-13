@@ -5,6 +5,8 @@
  */
 package rest;
 
+import com.google.gson.Gson;
+import data.PersonFacade;
 import entity.Person;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -18,74 +20,67 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 /**
  *
  * @author caspe
  */
-@Stateless
-@Path("entity.person")
-public class PersonFacadeREST extends AbstractFacade<Person> {
+@Path("person")
+public class PersonFacadeREST {
 
-    @PersistenceContext(unitName = "CA2DB")
-    private EntityManager em;
+    Gson gson = new Gson();
+    PersonFacade pf = new PersonFacade();
+    @Context
+    private UriInfo context;
 
     public PersonFacadeREST() {
-        super(Person.class);
+    }
+
+//    @GET
+//    @Path("/complete")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getAllPerson(@PathParam("id") int id) {
+//        TODO return proper representation object
+//        return Response.ok().entity(gson.toJson(dbf.g).build();
+//    }
+    @GET
+    @Path("/id/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPersonFromID(@PathParam("id") int id) {
+
+        Person p = pf.getPersonById(id);
+        //  PersonFullDTO pdto = new PersonFullDTO(p);
+        return Response.ok().entity(gson.toJson(p)).build();
+    }
+
+    @GET
+    @Path("/name/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPersonFromName(@PathParam("name") String name) {
+
+        Person p = pf.getPersonByName(name);
+        System.out.println(p);
+        //  PersonFullDTO pdto = new PersonFullDTO(p);
+        return Response.ok().entity(gson.toJson(p)).build();
     }
 
     @POST
-    @Override
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Person entity) {
-        super.create(entity);
-    }
-
-    @PUT
-    @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Long id, Person entity) {
-        super.edit(entity);
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void postPerson(String content) {
+        Person p = gson.fromJson(content, Person.class);
+        pf.addPerson(p);
     }
 
     @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") Long id) {
-        super.remove(super.find(id));
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteCustomer(@PathParam("id") int id) {
+        Person p = pf.deletePersonById(id);
+        return Response.ok().entity(gson.toJson(p)).build();
     }
 
-    @GET
-    @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Person find(@PathParam("id") Long id) {
-        return super.find(id);
-    }
-
-    @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Person> findAll() {
-        return super.findAll();
-    }
-
-    @GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Person> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
-
-    @GET
-    @Path("count")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String countREST() {
-        return String.valueOf(super.count());
-    }
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-    
 }

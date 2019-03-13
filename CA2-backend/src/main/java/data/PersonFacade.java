@@ -15,7 +15,8 @@ public class PersonFacade {
 
     private EntityManagerFactory emf;
 
-//    public static void main(String[] args) {
+
+    //    public static void main(String[] args) {
 //        EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("CA2DB");
 //        EntityManager em1 = emf1.createEntityManager();
 //
@@ -34,6 +35,9 @@ public class PersonFacade {
 //    }
     public void addEntityManager(EntityManagerFactory emf) {
         this.emf = emf;
+    }
+        public EntityManager getManager() {
+        return emf.createEntityManager();
     }
 
     public Person addPerson(Person p) {
@@ -57,6 +61,7 @@ public class PersonFacade {
             em.close();
         }
     }
+    
 
     public Person getPersonById(int id) {
         EntityManager em = emf.createEntityManager();
