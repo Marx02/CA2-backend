@@ -5,8 +5,10 @@
  */
 package rest;
 
-import entity.Address;
-import java.util.List;
+import com.google.gson.Gson;
+import data.AddressFacade;
+import dto.AddressDTO;
+import entity.CityInfo;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,20 +20,46 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 /**
  *
  * @author caspe
  */
-@Stateless
-@Path("entity.address")
+@Path("address")
 public class AddressFacadeREST {
 
-    @PersistenceContext(unitName = "CA2DB")
+    @Context
+    private UriInfo context;
+
+    Gson gson = new Gson();
+    AddressFacade af = new AddressFacade();
+
+    //@PersistenceContext(unitName = "CA2DB")
     private EntityManager em;
 
     public AddressFacadeREST() {
+    }
+    
+        @GET
+    @Path("/name/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCityInfoFromName(@PathParam("name") String name) {
+
+        AddressDTO cidto = new AddressDTO(af.getAddressByStreet(name));
+        return Response.ok().entity(gson.toJson(cidto)).build();
+    }
+    
+        @GET
+    @Path("/id/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCityInfoFromID(@PathParam("id") int id) {
+
+        AddressDTO ci = new AddressDTO(af.getAddressById(id));
+        return Response.ok().entity(gson.toJson(ci)).build();
     }
 
 }

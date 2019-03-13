@@ -24,6 +24,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import data.CityInfoFacade;
+import dto.CityInfoDTO;
 
 /**
  *
@@ -54,8 +55,8 @@ public class CityInfoFacadeREST {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCityInfoFromName(@PathParam("name") String name) {
 
-        CityInfo ci = cif.getCityByName(name);
-        return Response.ok().entity(gson.toJson(ci)).build();
+        CityInfoDTO cidto = new CityInfoDTO(cif.getCityByName(name));
+        return Response.ok().entity(gson.toJson(cidto)).build();
     }
 
     @GET

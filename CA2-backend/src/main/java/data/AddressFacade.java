@@ -5,6 +5,7 @@ import entity.Address;
 import entity.Person;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -12,7 +13,7 @@ import javax.persistence.Query;
  */
 public class AddressFacade {
 
-    private EntityManagerFactory emf;
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2DB");
 
     public void addEntityManager(EntityManagerFactory emf) {
         this.emf = emf;
