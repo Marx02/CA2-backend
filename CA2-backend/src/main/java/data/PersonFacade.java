@@ -6,6 +6,7 @@ import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -13,7 +14,16 @@ import javax.persistence.Query;
  */
 public class PersonFacade {
 
-    private EntityManagerFactory emf;
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2DB");
+
+    public PersonFacade(EntityManagerFactory emf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public PersonFacade() {
+    }
+    
+    
 
 
     //    public static void main(String[] args) {

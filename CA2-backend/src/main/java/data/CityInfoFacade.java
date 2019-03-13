@@ -10,6 +10,7 @@ import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -19,7 +20,16 @@ import javax.persistence.Query;
 public class CityInfoFacade {
 
     /* Esben Dalgaard; DECK-CS */
-    private EntityManagerFactory emf;
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2DB");
+
+    public CityInfoFacade(EntityManagerFactory emf) {
+        
+    }
+
+    public CityInfoFacade() {
+    }
+    
+    
 
 //    public static void main(String[] args) {
 //        EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("CA2DB");
