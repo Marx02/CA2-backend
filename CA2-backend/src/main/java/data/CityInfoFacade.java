@@ -84,12 +84,13 @@ public class CityInfoFacade {
         }
     }
 
-    public CityInfo deleteCityById(int id) {
+    public CityInfo deleteCityByZip(int zip) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            CityInfo p = em.find(CityInfo.class, (Integer) id);
+            CityInfo p = em.find(CityInfo.class, (Integer) zip);
             em.remove(p);
+            em.getTransaction().commit();
             return p;
         } finally {
             em.close();
@@ -116,5 +117,6 @@ public class CityInfoFacade {
             em.close();
         }
     }
+
 
 }
