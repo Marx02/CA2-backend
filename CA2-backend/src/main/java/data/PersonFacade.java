@@ -119,4 +119,9 @@ public class PersonFacade {
             em.close();
         }
     }
+
+    public Object getAllPersons() {
+        EntityManager em = emf.createEntityManager();
+        return em.createQuery("SELECT p FROM Person p").getResultList();
+    }
 }
