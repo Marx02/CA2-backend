@@ -3,6 +3,7 @@ package data;
 
 import entity.Hobby;
 import entity.Person;
+import exceptions.CustomerNotFoundException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,9 +23,6 @@ public class PersonFacade {
 
     public PersonFacade() {
     }
-    
-    
-
 
     //    public static void main(String[] args) {
 //        EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("CA2DB");
@@ -46,7 +44,8 @@ public class PersonFacade {
     public void addEntityManager(EntityManagerFactory emf) {
         this.emf = emf;
     }
-        public EntityManager getManager() {
+
+    public EntityManager getManager() {
         return emf.createEntityManager();
     }
 
@@ -72,7 +71,6 @@ public class PersonFacade {
             em.close();
         }
     }
-    
 
     public Person getPersonById(int id) {
         EntityManager em = emf.createEntityManager();
@@ -84,11 +82,14 @@ public class PersonFacade {
         }
     }
 
-    public Person deletePersonById(int id) {
+    public Person deletePersonById(int id) throws CustomerNotFoundException {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             Person p = em.find(Person.class, (Integer) id);
+            if (p == null) {
+                throw new CustomerNotFoundException("No customer found with id: " + id);
+            }
             em.remove(p);
             em.getTransaction().commit();
             return p;
@@ -105,7 +106,7 @@ public class PersonFacade {
             List<Person> ls = q.getResultList();
             ls.addAll(v.getResultList());
             return ls;
-        }finally{
+        } finally {
             em.close();
         }
     }
@@ -115,7 +116,7 @@ public class PersonFacade {
         try {
             Query q = em.createQuery("select c from Person c where c.email = :email").setParameter("email", email);
             return (Person) q.getResultList().get(0);
-        }finally{
+        } finally {
             em.close();
         }
     }
