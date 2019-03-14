@@ -29,6 +29,8 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(exceptions.CustomerNotFoundExceptionMapper.class);
+        resources.add(exceptions.GenericExceptionMapper.class);
         resources.add(filter.CorsFilter.class);
         resources.add(filter.CorsRequestFilter.class);
         resources.add(rest.AddressFacadeREST.class);

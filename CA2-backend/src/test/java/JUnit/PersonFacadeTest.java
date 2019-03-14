@@ -51,7 +51,10 @@ public class PersonFacadeTest {
         Person tp = pf.getPersonByName(name);
         int id = tp.getId();
         Person tp1 = pf.deletePersonById(id);
-        assertEquals(id,tp.getId(),0.1);
+        String name2 = "Johnson";
+        Person tp2 = pf.getPersonByName(name2);
+        int id2 = tp2.getId();
+        pf.deletePersonById(id2);
     }
     @Before
     public void setUp() {

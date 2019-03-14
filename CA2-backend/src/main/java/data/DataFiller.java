@@ -41,6 +41,12 @@ public class DataFiller {
           ci.setZip(2900);
           ci.setCity("Lyngby");
           
+          Phone pwn = new Phone();
+          pwn.setNumber(23894567);
+          pwn.setDescription("Privat");
+          
+          p.addToPhoneCollection(pwn);
+          pwn.setPerson(p);
           Hobby h = new Hobby();
           h.setName("Pwning n00bs");
           h.setDescription("ez");
