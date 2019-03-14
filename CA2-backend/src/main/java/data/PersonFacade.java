@@ -65,7 +65,7 @@ public class PersonFacade {
     public Person getPersonByName(String name) {
         EntityManager em = emf.createEntityManager();
         try {
-            Query q = em.createQuery("select c from Person c where c.firstName = :name");
+            Query q = em.createQuery("select c from Person c where c.firstname = :name");
             q.setParameter("name", name);
             return (Person) q.getResultList().get(0);
         } finally {
