@@ -47,7 +47,7 @@ public class PersonFacadeTest {
     public static void tearDownClass() {
         PersonFacadeTest t1 = new PersonFacadeTest();
         PersonFacade pf = t1.setEMF();
-        String name = "Jim";
+        String name = "Raynor";
         Person tp = pf.getPersonByName(name);
         int id = tp.getId();
         Person tp1 = pf.deletePersonById(id);
@@ -93,10 +93,11 @@ public class PersonFacadeTest {
     public void getPersonById(){
         PersonFacade pf = setEMF();
         String name = "Jim";
-        Person tp = pf.getPersonByName(name);
-        int id = tp.getId();
+        List<Person> tp = pf.getPersonsByName(name);
+        int id = tp.get(0).getId();
+        System.out.println(id);
         Person tp1 = pf.getPersonById(id);
-        assertEquals(tp1.getFirstName(),"Jim");
+        assertEquals(tp1.getFirstName(),"Raynor");
     }
     
     @Test
