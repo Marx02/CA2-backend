@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -56,9 +57,9 @@ public class Person implements Serializable {
     @Column(name = "lastname", length = 45)
     private String lastname;
     @ManyToMany(mappedBy = "personCollection")
-    private Collection<Hobby> hobbyCollection;
+    private Collection<Hobby> hobbyCollection = new ArrayList();
     @OneToMany(mappedBy = "person")
-    private Collection<Phone> phoneCollection;
+    private Collection<Phone> phoneCollection = new ArrayList();
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     @ManyToOne
     private Address address;
@@ -70,7 +71,15 @@ public class Person implements Serializable {
         this.id = id;
     }
 
-    public Person(Integer id, String email, String firstname, String lastname, Collection<Hobby> hobbyCollection, Collection<Phone> phoneCollection, Address address) {
+    public Person(Integer id, String email, String firstname, String lastname, Address address) {
+        this.id = id;
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+    }
+    
+    public Person( String email, String firstname, String lastname, Collection<Hobby> hobbyCollection, Collection<Phone> phoneCollection, Address address) {
         this.id = id;
         this.email = email;
         this.firstname = firstname;
@@ -79,6 +88,7 @@ public class Person implements Serializable {
         this.phoneCollection = phoneCollection;
         this.address = address;
     }
+    
 
     public Person(Integer id) {
         this.id = id;

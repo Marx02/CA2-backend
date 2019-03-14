@@ -24,8 +24,8 @@ public class DataFiller {
         
         public static void main(String[] args) {
             DataFiller df = new DataFiller();
-            //df.addPersonToDB();
-            df.delete();
+            df.addPersonToDB();
+            //df.delete();
     }
     
       void addPersonToDB(){
@@ -40,8 +40,9 @@ public class DataFiller {
           Hobby h = new Hobby();
           h.setName("Pwning n00bs");
           h.setDescription("ez");
-          hf.addHobby(h);
-          p.addToHobbyCollection(h);
+          Hobby h2 =hf.addHobby(h);
+          p.addToHobbyCollection(h2);
+          
           Address a = new Address();
           a.setCityinfo(ci);
           a.setStreet("Hyggevej 25");
@@ -51,9 +52,12 @@ public class DataFiller {
           
           Phone ph = new Phone();
           ph.setNumber(21861590);
-          ph.setPerson(p);
-          pf.addPerson(p);
+          //p.addToPhoneCollection(ph);
+          Person p2 = pf.addPerson(p);
+          h2.addToPersonCollection(p2);
+          hf.editHobby(h2);
           
+         // Person ptest = new Person("kim@hotmail.dk", "Kim", "Pedersen", Address address);
           
       }
       
