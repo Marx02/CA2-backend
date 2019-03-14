@@ -21,17 +21,18 @@ public class PersonSimpleDTO {
     PhoneDTO phdto;
     CityInfoDTO cdto;
     PhoneDTO phoneDTO;
-    String address;
+    AddressDTO adto;
 
     public PersonSimpleDTO(Person p) {
         this.id = p.getId();
         this.fName = p.getFirstName();
         this.lName = p.getLastName();
         if (p.getPhoneCollection() != null) {
-            this.phoneDTO = new PhoneDTO((Phone) p.getPhoneCollection().toArray()[0]);
+            for (Phone ph : p.getPhoneCollection()) {
+                this.phoneDTO = new PhoneDTO(ph);
+            }
         }
-        this.address = p.getAddress().getStreet() + p.getAddress().getAdditionalinfo();
-        this.cdto = new CityInfoDTO(p.getAddress().getCityinfo());
+        this.adto = new AddressDTO(p.getAddress());
 
     }
 

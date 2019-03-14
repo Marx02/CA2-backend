@@ -7,7 +7,10 @@ package rest;
 
 import com.google.gson.Gson;
 import data.PersonFacade;
+import dto.PersonSimpleDTO;
 import entity.Person;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -44,7 +47,11 @@ public class PersonFacadeREST {
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllPersons() {
-        return Response.ok().entity(gson.toJson(pf.getAllPersons())).build();
+        ArrayList<PersonSimpleDTO> plist = new ArrayList();
+        for (Person p : (Collection<Person>) pf.getAllPersons()) {
+            plist.add(new PersonSimpleDTO(p));
+        }
+        return Response.ok().entity(gson.toJson(plist)).build();
     }
 
 //    @GET
