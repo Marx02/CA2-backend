@@ -16,7 +16,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import data.PersonFacade;
-import exceptions.CustomerNotFoundException;
 import org.junit.AfterClass;
 
 /**
@@ -45,7 +44,7 @@ public class PersonFacadeTest {
     }
     
     @AfterClass
-    public static void tearDownClass() throws CustomerNotFoundException {
+    public static void tearDownClass() {
         PersonFacadeTest t1 = new PersonFacadeTest();
         PersonFacade pf = t1.setEMF();
         String name = "Raynor";
@@ -105,7 +104,7 @@ public class PersonFacadeTest {
     }
     
     @Test
-    public void deletePersonById() throws CustomerNotFoundException{
+    public void deletePersonById() {
         PersonFacade pf = setEMF();
         String name = "Michael";
         Person tp = pf.getPersonByName(name);

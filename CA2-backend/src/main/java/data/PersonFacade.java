@@ -3,7 +3,6 @@ package data;
 
 import entity.Hobby;
 import entity.Person;
-import exceptions.CustomerNotFoundException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -82,14 +81,11 @@ public class PersonFacade {
         }
     }
 
-    public Person deletePersonById(int id) throws CustomerNotFoundException {
+    public Person deletePersonById(int id) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             Person p = em.find(Person.class, (Integer) id);
-            if (p == null) {
-                throw new CustomerNotFoundException("No customer found with id: " + id);
-            }
             em.remove(p);
             em.getTransaction().commit();
             return p;
