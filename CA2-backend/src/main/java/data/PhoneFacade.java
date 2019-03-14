@@ -5,7 +5,10 @@
  */
 package data;
 
+import dto.PhoneDTO;
+import entity.Person;
 import entity.Phone;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -28,27 +31,33 @@ public class PhoneFacade {
 
     }
 
-    public List<Phone> getAllNumbers(int number) {
+//    public List<Phone> getAllNumbers() {
+//        EntityManager em = emf.createEntityManager();
+//        try {
+//            Query q = em.createQuery("SELECT p FROM Phone p").getResultList();
+//            List<Phone> pl = q.getResultList();
+//            return pl;
+//        } finally {
+//            em.close();
+//        }
+//    }
+    public List<PhoneDTO> getAllNumbersDTO() {
+        EntityManager em = emf.createEntityManager();
+        List<PhoneDTO> pList = new ArrayList();
+        for (Phone p : (List<Phone>) em.createQuery("SELECT p FROM Phone p").getResultList()) {
+            pList.add(new PhoneDTO(p));
+        }
+        return pList;
+    }
+
+    public Phone getPersonByNumber(int number) {
         EntityManager em = emf.createEntityManager();
         try {
-            Query q = em.createQuery("SELECT p FROM Phone p").setParameter("number", number);
-            List<Phone> pl = q.getResultList();
-            return pl;
+            Query q = em.createQuery("SELECT p FROM Phone p WHERE p.number = :number").setParameter("number", number);
+            return (Phone) q.getResultList();
         } finally {
             em.close();
         }
     }
 
-    public Phone getPersonByPhone(int number) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            Query q = em.createQuery("SELECT p FROM Phone p WHERE p.number = :number").setParameter("number", number);
-            return (Phone) q.getResultList().get(0);
-        } finally {
-            em.close();
-        }
-    }
-    
-    
-    
 }
