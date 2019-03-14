@@ -30,17 +30,20 @@ public class CityInfoFacadeTest {
     public static void setUpClass() {
         CityInfoFacadeTest t1 = new CityInfoFacadeTest();
         CityInfoFacade db = t1.setEMF();
-        CityInfo city = new CityInfo(2900);
-        city.setCity("Hellerup");
+        CityInfo city = new CityInfo(9999);
+        city.setCity("Fakestrup");
         try {
             db.addCity(city);
         } catch (Exception e) {
-
+            
         }
     }
 
     @AfterClass
     public static void tearDownClass() {
+        CityInfoFacadeTest t1 = new CityInfoFacadeTest();
+        CityInfoFacade db = t1.setEMF();
+        db.deleteCityByZip(10000);
     }
 
     @Before
@@ -54,7 +57,7 @@ public class CityInfoFacadeTest {
     @Test
     public void addCityTest() {
         CityInfoFacade db = setEMF();
-        CityInfo city = new CityInfo(8600);
+        CityInfo city = new CityInfo(10000);
         city.setCity("Silkeborg");
 //        Address adr = new Address();
 //        adr.setStreet("Nygade");
@@ -71,14 +74,6 @@ public class CityInfoFacadeTest {
         assertEquals(ntest, teststring);
     }
 
-    @Test
-    public void getCityByIdTest() {
-        int id = 1;
-        CityInfoFacade db = setEMF();
-        String name = db.getCityById(id).getCity();
-        String rname = "Hellerup";
-        assertEquals(name, rname);
-    }
 
     @Test
     public void getCityByZipTest() {
@@ -88,14 +83,14 @@ public class CityInfoFacadeTest {
         assertEquals(zip, city.getZip(), 0.1);
     }
 
-//    @Test
-//    public void deleteCityByIdTest() {
-//        int id = 1;
-//        CityInfoFacade db = setEMF();
-//        CityInfo tp = db.deleteCityById(id);
-//        assertEquals(id, tp.getId(), 0.1);
-//        assertTrue(true);
-//    }
+    @Test
+    public void deleteCityByZipTest() {
+        int zip = 9999;
+        CityInfoFacade db = setEMF();
+        CityInfo tp = db.deleteCityByZip(zip);
+        assertEquals(zip, tp.getZip(), 0.1);
+    }
+    
     private CityInfoFacade setEMF() {
         CityInfoFacade db = new CityInfoFacade();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2DB");

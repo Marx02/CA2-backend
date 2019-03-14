@@ -87,10 +87,10 @@ public class CityInfoFacadeREST {
     }
 
     @DELETE
-    @Path("/{id}")
+    @Path("/{zip}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteCustomer(@PathParam("id") int id) {
-        CityInfo ci = cif.deleteCityById(id);
+    public Response deleteCustomer(@PathParam("zip") int zip) {
+        CityInfo ci = cif.deleteCityByZip(zip);
         return Response.ok().entity(gson.toJson(ci)).build();
     }
 
