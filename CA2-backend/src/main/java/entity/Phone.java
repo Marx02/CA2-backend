@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Phone.findAll", query = "SELECT p FROM Phone p")
-    , @NamedQuery(name = "Phone.findByNumber", query = "SELECT p FROM Phone p WHERE p.number = :number")
+    , @NamedQuery(name = "Phone.findByNumber", query = "SELECT p FROM Phone p WHERE p.pnumber = :pnumber")
     , @NamedQuery(name = "Phone.findByDescription", query = "SELECT p FROM Phone p WHERE p.description = :description")})
 public class Phone implements Serializable {
 
@@ -36,8 +36,8 @@ public class Phone implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "number", nullable = false)
-    private Integer number;
+    @Column(name = "pnumber", nullable = false)
+    private Integer pnumber;
     @Size(max = 45)
     @Column(name = "description", length = 45)
     private String description;
@@ -49,15 +49,15 @@ public class Phone implements Serializable {
     }
 
     public Phone(Integer number) {
-        this.number = number;
+        this.pnumber = number;
     }
 
     public Integer getNumber() {
-        return number;
+        return pnumber;
     }
 
     public void setNumber(Integer number) {
-        this.number = number;
+        this.pnumber = number;
     }
 
     public String getDescription() {
@@ -79,7 +79,7 @@ public class Phone implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (number != null ? number.hashCode() : 0);
+        hash += (pnumber != null ? pnumber.hashCode() : 0);
         return hash;
     }
 
@@ -90,7 +90,7 @@ public class Phone implements Serializable {
             return false;
         }
         Phone other = (Phone) object;
-        if ((this.number == null && other.number != null) || (this.number != null && !this.number.equals(other.number))) {
+        if ((this.pnumber == null && other.pnumber != null) || (this.pnumber != null && !this.pnumber.equals(other.pnumber))) {
             return false;
         }
         return true;
@@ -98,7 +98,7 @@ public class Phone implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Phone[ number=" + number + " ]";
+        return "entity.Phone[ number=" + pnumber + " ]";
     }
     
 }

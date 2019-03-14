@@ -24,5 +24,4 @@ public class AddressDTO {
         this.street = a.getStreet();
         this.additionalinfo = a.getAdditionalinfo();
     }
-    
 }
