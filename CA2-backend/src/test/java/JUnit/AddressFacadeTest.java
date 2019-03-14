@@ -37,6 +37,12 @@ public class AddressFacadeTest {
 
     @AfterClass
     public static void tearDownClass() {
+        AddressFacadeTest t1 = new AddressFacadeTest();
+        AddressFacade db = t1.setEMF();
+        Address tA = new Address();
+        String street2 = "Bowlerstreet 8";
+        Address tA3 = db.getAddressByStreet(street2);
+        Address tA4 = db.deleteAddressById(tA3.getId());
     }
 
     @Before
@@ -85,9 +91,7 @@ public class AddressFacadeTest {
         String street = "Bowlerstreet 10";
         Address tA = db.getAddressByStreet(street);
         Address tA2 = db.deleteAddressById(tA.getId());
-        String street2 = "Bowlerstreet 8";
-        Address tA3 = db.getAddressByStreet(street2);
-        Address tA4 = db.deleteAddressById(tA3.getId());
+        
         assertEquals(tA.getStreet(),tA2.getStreet());
     }
 

@@ -34,8 +34,8 @@ public class DataFiller {
           
           Person p = new Person();
           p.setEmail("dan.tomicic@gmail.com");
-          p.setFirstname("Dan");
-          p.setLastname("Tomicic");
+          p.setFirstName("Dan");
+          p.setLastName("Tomicic");
           
           CityInfo ci = new CityInfo();
           ci.setZip(2900);
@@ -64,7 +64,7 @@ public class DataFiller {
       }
       
       private void delete(){
-          System.out.println(pf.deletePersonById(2).getFirstname());
+          System.out.println(pf.deletePersonById(2).getFirstName());
           
       }
         
