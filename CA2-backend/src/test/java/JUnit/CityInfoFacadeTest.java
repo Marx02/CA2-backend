@@ -22,7 +22,6 @@ import data.CityInfoFacade;
  * @author Esben
  */
 public class CityInfoFacadeTest {
-
     public CityInfoFacadeTest() {
     }
 
@@ -31,11 +30,14 @@ public class CityInfoFacadeTest {
         CityInfoFacadeTest t1 = new CityInfoFacadeTest();
         CityInfoFacade db = t1.setEMF();
         CityInfo city = new CityInfo(9999);
-        city.setCity("Fakestrup");
+        city.setCity("DeleteTest");
+        CityInfo city2 = new CityInfo(9998);
+        city2.setCity("Fakestrup");
         try {
             db.addCity(city);
+            db.addCity(city2);
         } catch (Exception e) {
-            
+
         }
     }
 
@@ -43,7 +45,12 @@ public class CityInfoFacadeTest {
     public static void tearDownClass() {
         CityInfoFacadeTest t1 = new CityInfoFacadeTest();
         CityInfoFacade db = t1.setEMF();
-        db.deleteCityByZip(10000);
+        try {
+            db.deleteCityByZip(10000);
+            db.deleteCityByZip(9998);
+        } catch (Exception e) {
+
+        }
     }
 
     @Before
@@ -69,17 +76,16 @@ public class CityInfoFacadeTest {
     @Test
     public void getCityByNameTest() {
         CityInfoFacade db = setEMF();
-        String ntest = db.getCityByName("Hellerup").getCity();
-        String teststring = "Hellerup";
+        String ntest = db.getCityByName("Fakestrup").getCity();
+        String teststring = "Fakestrup";
         assertEquals(ntest, teststring);
     }
-
 
     @Test
     public void getCityByZipTest() {
         CityInfoFacade db = setEMF();
-        int zip = 2900;
-        CityInfo city = db.getCityByZip(2900);
+        int zip = 9998;
+        CityInfo city = db.getCityByZip(zip);
         assertEquals(zip, city.getZip(), 0.1);
     }
 
@@ -90,7 +96,7 @@ public class CityInfoFacadeTest {
         CityInfo tp = db.deleteCityByZip(zip);
         assertEquals(zip, tp.getZip(), 0.1);
     }
-    
+
     private CityInfoFacade setEMF() {
         CityInfoFacade db = new CityInfoFacade();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2DB");
