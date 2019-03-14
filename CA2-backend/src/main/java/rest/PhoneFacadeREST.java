@@ -5,6 +5,10 @@
  */
 package rest;
 
+import com.google.gson.Gson;
+import data.PhoneFacade;
+import dto.PhoneDTO;
+import entity.Person;
 import entity.Phone;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -19,21 +23,42 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author caspe
  */
 @Stateless
-@Path("entity.phone")
-public class PhoneFacadeREST  {
+@Path("phone")
+public class PhoneFacadeREST {
 
-    @PersistenceContext(unitName = "CA2DB")
-    private EntityManager em;
+    Gson gson = new Gson();
+
+    PhoneFacade pf = new PhoneFacade();
 
     public PhoneFacadeREST() {
-        
+
     }
 
-    
+    @GET
+    @Path("/number/{number}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPersonFromNumber(@PathParam("number") int number) {
+        
+        //Virker ikke, har prøvet at lave getPersonByNumber som person
+
+        return Response.ok().entity(gson.toJson(pf.getPersonByNumber(number))).build();
+    }
+
+    @GET
+    @Path("/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllNumbers() {
+
+        List<PhoneDTO> phoneList = pf.getAllNumbersDTO();
+
+        return Response.ok().entity(gson.toJson(phoneList)).build();
+    }
+
 }

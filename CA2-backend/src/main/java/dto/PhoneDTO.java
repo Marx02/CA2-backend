@@ -5,20 +5,27 @@
  */
 package dto;
 
+import entity.Person;
+import entity.Phone;
+
 /**
  *
  * @author caspe
  */
 public class PhoneDTO {
-    
+
     int number;
     String description;
+    //Person person;
 
-    public PhoneDTO(int number, String description) {
-        this.number = number;
-        this.description = description;
+    public PhoneDTO(Phone phone) {
+        this.number = phone.getNumber();
+        this.description = phone.getDescription();
+        //this.person = phone.getPerson();
     }
-    
-    
-    
+
+//    public PhoneDTO(Phone personByPhone) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+
 }
