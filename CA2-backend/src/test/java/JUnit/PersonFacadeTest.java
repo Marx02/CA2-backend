@@ -52,7 +52,7 @@ public class PersonFacadeTest {
         Person tp = pf.getPersonByName(name);
         int id = tp.getId();
         Person tp1 = pf.deletePersonById(id);
-        String name2 = "Johnson";
+        String name2 = "John";
         Person tp2 = pf.getPersonByName(name2);
         int id2 = tp2.getId();
         pf.deletePersonById(id2);
