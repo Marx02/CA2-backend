@@ -35,27 +35,27 @@ public class DataFiller {
           p.setFirstname("Dan");
           p.setLastname("Tomicic");
           
-          CityInfo ci = cif.getCityByZip(2900);
+//          CityInfo ci = cif.getCityByZip(2900);
           
           Hobby h = new Hobby();
           h.setName("Pwning n00bs");
           h.setDescription("ez");
-          Hobby h2 =hf.addHobby(h);
-          p.addToHobbyCollection(h2);
+          h.addToPersonCollection(p);
+          p.addToHobbyCollection(h);
+//          p.addToHobbyCollection(h);
           
-          Address a = new Address();
-          a.setCityinfo(ci);
-          a.setStreet("Hyggevej 25");
-          a.setAdditionalinfo("3th");
-          af.addAddress(a);
-          p.setAddress(a);
+//          Address a = new Address();
+//          a.setCityinfo(ci);
+//          a.setStreet("Hyggevej 25");
+//          a.setAdditionalinfo("3th");
+//          af.addAddress(a);
+//          p.setAddress(a);
           
-          Phone ph = new Phone();
-          ph.setNumber(21861590);
+//          Phone ph = new Phone();
+//          ph.setNumber(21861590);
           //p.addToPhoneCollection(ph);
           Person p2 = pf.addPerson(p);
-          h2.addToPersonCollection(p2);
-          hf.editHobby(h2);
+          System.out.println(p2.getHobbyCollection());
           
          // Person ptest = new Person("kim@hotmail.dk", "Kim", "Pedersen", Address address);
           

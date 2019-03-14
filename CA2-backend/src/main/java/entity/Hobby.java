@@ -6,8 +6,10 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -52,8 +54,8 @@ public class Hobby implements Serializable {
     @JoinTable(name = "person_has_hobby", joinColumns = {
         @JoinColumn(name = "hobby_id", referencedColumnName = "id", nullable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = false)})
-    @ManyToMany
-    private Collection<Person> personCollection;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Collection<Person> personCollection = new ArrayList();
 
     public Hobby() {
     }

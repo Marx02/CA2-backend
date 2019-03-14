@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,7 +57,7 @@ public class Person implements Serializable {
     @Size(max = 45)
     @Column(name = "lastname", length = 45)
     private String lastname;
-    @ManyToMany(mappedBy = "personCollection")
+    @ManyToMany(mappedBy = "personCollection", cascade = CascadeType.ALL)
     private Collection<Hobby> hobbyCollection = new ArrayList();
     @OneToMany(mappedBy = "person")
     private Collection<Phone> phoneCollection = new ArrayList();
