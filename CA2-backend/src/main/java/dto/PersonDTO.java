@@ -27,8 +27,8 @@ public class PersonDTO {
 
     public PersonDTO(Person p) {
         this.id = p.getId();
-        this.firstName = p.getFirstname();
-        this.lastName = p.getLastname();
+        this.firstName = p.getFirstName();
+        this.lastName = p.getLastName();
         this.email = p.getEmail();
         if (p.getPhoneCollection() != null) {
             for (Phone ph : p.getPhoneCollection()) {

@@ -30,39 +30,41 @@ public class DataFiller {
     
       void addPersonToDB(){
           
+          
+          
           Person p = new Person();
           p.setEmail("dan.tomicic@gmail.com");
-          p.setFirstname("Dan");
-          p.setLastname("Tomicic");
+          p.setFirstName("Dan");
+          p.setLastName("Tomicic");
           
-          CityInfo ci = cif.getCityByZip(2900);
+          CityInfo ci = new CityInfo();
+          ci.setZip(2900);
+          ci.setCity("Lyngby");
           
           Hobby h = new Hobby();
           h.setName("Pwning n00bs");
           h.setDescription("ez");
-          Hobby h2 =hf.addHobby(h);
-          p.addToHobbyCollection(h2);
+          h.addToPersonCollection(p);
+          p.addToHobbyCollection(h);
+//          p.addToHobbyCollection(h);
           
           Address a = new Address();
-          a.setCityinfo(ci);
+ 
           a.setStreet("Hyggevej 25");
           a.setAdditionalinfo("3th");
-          af.addAddress(a);
+          a.addPerson(p);
+          ci.addAddress(a);
+          a.setCityinfo(ci);
           p.setAddress(a);
-          
-          Phone ph = new Phone();
-          ph.setNumber(21861590);
-          //p.addToPhoneCollection(ph);
-          Person p2 = pf.addPerson(p);
-          h2.addToPersonCollection(p2);
-          hf.editHobby(h2);
+          cif.addCity(ci);
+//          System.out.println(p2.getHobbyCollection());
           
          // Person ptest = new Person("kim@hotmail.dk", "Kim", "Pedersen", Address address);
           
       }
       
       private void delete(){
-          System.out.println(pf.deletePersonById(2).getFirstname());
+          System.out.println(pf.deletePersonById(2).getFirstName());
           
       }
         

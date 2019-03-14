@@ -25,8 +25,8 @@ public class PersonSimpleDTO {
 
     public PersonSimpleDTO(Person p) {
         this.id = p.getId();
-        this.fName = p.getFirstname();
-        this.lName = p.getLastname();
+        this.fName = p.getFirstName();
+        this.lName = p.getLastName();
         if (p.getPhoneCollection() != null) {
             this.phoneDTO = new PhoneDTO((Phone) p.getPhoneCollection().toArray()[0]);
         }

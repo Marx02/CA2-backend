@@ -65,7 +65,7 @@ public class PersonFacade {
     public Person getPersonByName(String name) {
         EntityManager em = emf.createEntityManager();
         try {
-            Query q = em.createQuery("select c from Person c where c.firstName = :name");
+            Query q = em.createQuery("select c from Person c where c.firstname = :name");
             q.setParameter("name", name);
             return (Person) q.getResultList().get(0);
         } finally {
@@ -100,8 +100,8 @@ public class PersonFacade {
     public List<Person> getPersonsByName(String name) {
         EntityManager em = emf.createEntityManager();
         try {
-            Query q = em.createQuery("select c from Person c where c.firstName = :name").setParameter("name", name);
-            Query v = em.createQuery("select c from Person c where c.lastName = :name").setParameter("name", name);
+            Query q = em.createQuery("select c from Person c where c.firstname = :name").setParameter("name", name);
+            Query v = em.createQuery("select c from Person c where c.lastname = :name").setParameter("name", name);
             List<Person> ls = q.getResultList();
             ls.addAll(v.getResultList());
             return ls;

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,11 +57,11 @@ public class Person implements Serializable {
     @Size(max = 45)
     @Column(name = "lastname", length = 45)
     private String lastname;
-    @ManyToMany(mappedBy = "personCollection")
+    @ManyToMany(mappedBy = "personCollection", cascade = CascadeType.ALL)
     private Collection<Hobby> hobbyCollection = new ArrayList();
     @OneToMany(mappedBy = "person")
     private Collection<Phone> phoneCollection = new ArrayList();
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+//    @JoinColumn(name = "address_id", referencedColumnName = "id")
     @ManyToOne
     private Address address;
 
@@ -110,19 +111,19 @@ public class Person implements Serializable {
         this.email = email;
     }
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
+    public void setFirstName(String firstname) {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
+    public String getLastName() {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
+    public void setLastName(String lastname) {
         this.lastname = lastname;
     }
 

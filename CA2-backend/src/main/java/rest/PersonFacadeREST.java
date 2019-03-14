@@ -46,7 +46,7 @@ public class PersonFacadeREST {
     public Response getAllPersons() {
         return Response.ok().entity(gson.toJson(pf.getAllPersons())).build();
     }
-    
+
 //    @GET
 //    @Path("/complete")
 //    @Produces(MediaType.APPLICATION_JSON)

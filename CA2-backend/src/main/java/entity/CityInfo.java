@@ -6,11 +6,14 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -42,8 +45,9 @@ public class CityInfo implements Serializable {
     @Size(max = 45)
     @Column(name = "city", length = 45)
     private String city;
-    @OneToMany(mappedBy = "cityinfo")
-    private Collection<Address> addressCollection;
+    @OneToMany(mappedBy = "cityinfo",cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_zip", referencedColumnName = "zip")
+    private Collection<Address> addressCollection = new ArrayList();
 
     public CityInfo() {
     }
@@ -71,6 +75,13 @@ public class CityInfo implements Serializable {
     @XmlTransient
     public Collection<Address> getAddressCollection() {
         return addressCollection;
+    }
+    public void setAddressCollection(Collection<Address> a){
+        this.addressCollection= a;
+    }
+    
+    public void addAddress(Address a){
+        this.addressCollection.add(a);
     }
 
     @Override
