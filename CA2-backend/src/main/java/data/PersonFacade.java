@@ -90,6 +90,7 @@ public class PersonFacade {
             em.getTransaction().begin();
             Person p = em.find(Person.class, (Integer) id);
             em.remove(p);
+            em.getTransaction().commit();
             return p;
         } finally {
             em.close();

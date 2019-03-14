@@ -57,8 +57,9 @@ public class DataFiller {
           
       }
       
-      void delete(){
-          pf.deletePersonById(2);
+      private void delete(){
+          System.out.println(pf.deletePersonById(2).getFirstname());
+          
       }
         
 }
