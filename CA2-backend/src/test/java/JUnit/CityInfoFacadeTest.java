@@ -26,63 +26,68 @@ public class CityInfoFacadeTest {
     public CityInfoFacadeTest() {
     }
 
-//    @BeforeClass
-//    public static void setUpClass() {
-//        CityInfoFacadeTest t1 = new CityInfoFacadeTest();
-//        CityInfoFacade db = t1.setEMF();
-//        CityInfo city = new CityInfo("Hellerup");
-//        city.setZipCode(2900);
-//        db.addCity(city);
-//    }
-//
-//    @AfterClass
-//    public static void tearDownClass() {
-//    }
-//
-//    @Before
-//    public void setUp() {
-//    }
-//
-//    @After
-//    public void tearDown() {
-//    }
-//
-//    @Test
-//    public void addCityTest() {
-//        CityInfoFacade db = setEMF();
-//        CityInfo city = new CityInfo("Nørrebro");
-//        Address adr = new Address("Vejgaden");
-//        city.addAdress(adr);
-//        city.setZipCode(2200);
-//        CityInfo tc = db.addCity(city);
-//        assertEquals(tc, city);
-//    }
-//
-//    @Test
-//    public void getCityByNameTest() {
-//        CityInfoFacade db = setEMF();
-//        String ntest = db.getCityByName("Hellerup").getCity();
-//        String teststring = "Hellerup";
-//        assertEquals(ntest, teststring);
-//    }
-//
-//    @Test
-//    public void getCityByIdTest() {
-//        int id = 1;
-//        CityInfoFacade db = setEMF();
-//        String name = db.getCityById(id).getCity();
-//        String rname = "Hellerup";
-//        assertEquals(name, rname);
-//    }
-//
-//    @Test
-//    public void getCityByZipTest() {
-//        CityInfoFacade db = setEMF();
-//        int zip = 2900;
-//        CityInfo city = db.getCityByZip(2900);
-//        assertEquals(zip, city.getZipCode());
-//    }
-//
+    @BeforeClass
+    public static void setUpClass() {
+        CityInfoFacadeTest t1 = new CityInfoFacadeTest();
+        CityInfoFacade db = t1.setEMF();
+        CityInfo city = new CityInfo(2900);
+        city.setCity("Hellerup");
+        try {
+            db.addCity(city);
+        } catch (Exception e) {
+
+        }
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+    @Before
+    public void setUp() {
+    }
+
+    @After
+    public void tearDown() {
+    }
+
+    @Test
+    public void addCityTest() {
+        CityInfoFacade db = setEMF();
+        CityInfo city = new CityInfo(8600);
+        city.setCity("Silkeborg");
+//        Address adr = new Address();
+//        adr.setStreet("Nygade");
+//        city.addAddress(adr);
+        CityInfo tc = db.addCity(city);
+        assertEquals(tc.getCity(), city.getCity());
+    }
+
+    @Test
+    public void getCityByNameTest() {
+        CityInfoFacade db = setEMF();
+        String ntest = db.getCityByName("Hellerup").getCity();
+        String teststring = "Hellerup";
+        assertEquals(ntest, teststring);
+    }
+
+    @Test
+    public void getCityByIdTest() {
+        int id = 1;
+        CityInfoFacade db = setEMF();
+        String name = db.getCityById(id).getCity();
+        String rname = "Hellerup";
+        assertEquals(name, rname);
+    }
+
+    @Test
+    public void getCityByZipTest() {
+        CityInfoFacade db = setEMF();
+        int zip = 2900;
+        CityInfo city = db.getCityByZip(2900);
+        assertEquals(zip, city.getZip(), 0.1);
+    }
+
 //    @Test
 //    public void deleteCityByIdTest() {
 //        int id = 1;
@@ -91,12 +96,10 @@ public class CityInfoFacadeTest {
 //        assertEquals(id, tp.getId(), 0.1);
 //        assertTrue(true);
 //    }
-//
-//    private CityInfoFacade setEMF() {
-//        CityInfoFacade db = new CityInfoFacade();
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2DB");
-//        db.addEntityManager(emf);
-//        return db;
-//    }
+    private CityInfoFacade setEMF() {
+        CityInfoFacade db = new CityInfoFacade();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2DB");
+        return db;
+    }
 
 }

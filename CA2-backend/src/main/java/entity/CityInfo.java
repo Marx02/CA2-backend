@@ -73,10 +73,6 @@ public class CityInfo implements Serializable {
         return addressCollection;
     }
 
-    public void addAddress(Address a) {
-        this.addressCollection.add(a);
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
