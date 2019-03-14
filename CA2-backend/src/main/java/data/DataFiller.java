@@ -30,12 +30,16 @@ public class DataFiller {
     
       void addPersonToDB(){
           
+          
+          
           Person p = new Person();
           p.setEmail("dan.tomicic@gmail.com");
           p.setFirstname("Dan");
           p.setLastname("Tomicic");
           
-//          CityInfo ci = cif.getCityByZip(2900);
+          CityInfo ci = new CityInfo();
+          ci.setZip(2900);
+          ci.setCity("Lyngby");
           
           Hobby h = new Hobby();
           h.setName("Pwning n00bs");
@@ -44,18 +48,16 @@ public class DataFiller {
           p.addToHobbyCollection(h);
 //          p.addToHobbyCollection(h);
           
-//          Address a = new Address();
-//          a.setCityinfo(ci);
-//          a.setStreet("Hyggevej 25");
-//          a.setAdditionalinfo("3th");
-//          af.addAddress(a);
-//          p.setAddress(a);
-          
-//          Phone ph = new Phone();
-//          ph.setNumber(21861590);
-          //p.addToPhoneCollection(ph);
-          Person p2 = pf.addPerson(p);
-          System.out.println(p2.getHobbyCollection());
+          Address a = new Address();
+ 
+          a.setStreet("Hyggevej 25");
+          a.setAdditionalinfo("3th");
+          a.addPerson(p);
+          ci.addAddress(a);
+          a.setCityinfo(ci);
+          p.setAddress(a);
+          cif.addCity(ci);
+//          System.out.println(p2.getHobbyCollection());
           
          // Person ptest = new Person("kim@hotmail.dk", "Kim", "Pedersen", Address address);
           

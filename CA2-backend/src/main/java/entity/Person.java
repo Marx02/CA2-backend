@@ -61,7 +61,7 @@ public class Person implements Serializable {
     private Collection<Hobby> hobbyCollection = new ArrayList();
     @OneToMany(mappedBy = "person")
     private Collection<Phone> phoneCollection = new ArrayList();
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+//    @JoinColumn(name = "address_id", referencedColumnName = "id")
     @ManyToOne
     private Address address;
 

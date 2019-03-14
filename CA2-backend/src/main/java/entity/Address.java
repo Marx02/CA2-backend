@@ -6,8 +6,10 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,11 +51,12 @@ public class Address implements Serializable {
     @Size(max = 45)
     @Column(name = "additionalinfo", length = 45)
     private String additionalinfo;
-    @JoinColumn(name = "zip", referencedColumnName = "zip")
+//    @JoinColumn(name = "zip", referencedColumnName = "zip")
     @ManyToOne
     private CityInfo cityinfo;
-    @OneToMany(mappedBy = "address")
-    private Collection<Person> personCollection;
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Collection<Person> personCollection = new ArrayList();
 
     public Address() {
     }
@@ -101,6 +104,9 @@ public class Address implements Serializable {
 
     public void setPersonCollection(Collection<Person> personCollection) {
         this.personCollection = personCollection;
+    }
+    public void addPerson(Person p){
+        this.personCollection.add(p);
     }
 
     @Override
