@@ -52,6 +52,12 @@ public class Phone implements Serializable {
         this.pnumber = number;
     }
 
+    public Phone(Integer pnumber, String description, Person person) {
+        this.pnumber = pnumber;
+        this.description = description;
+        this.person = person;
+    }
+
     public Integer getNumber() {
         return pnumber;
     }

@@ -18,10 +18,8 @@ public class PersonSimpleDTO {
     int id;
     String fName;
     String lName;
-    PhoneDTO phdto;
-    CityInfoDTO cdto;
-    PhoneDTO phoneDTO;
-    AddressDTO adto;
+    PhoneDTO phone;
+    AddressDTO address;
 
     public PersonSimpleDTO(Person p) {
         this.id = p.getId();
@@ -29,10 +27,10 @@ public class PersonSimpleDTO {
         this.lName = p.getLastName();
         if (p.getPhoneCollection() != null) {
             for (Phone ph : p.getPhoneCollection()) {
-                this.phoneDTO = new PhoneDTO(ph);
+                this.phone = new PhoneDTO(ph);
             }
         }
-        this.adto = new AddressDTO(p.getAddress());
+        this.address = new AddressDTO(p.getAddress());
 
     }
 

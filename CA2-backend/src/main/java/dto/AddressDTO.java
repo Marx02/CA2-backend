@@ -13,15 +13,15 @@ import entity.Address;
  */
 public class AddressDTO {
     
-   CityInfoDTO cdto;
-   String additionalinfo;
+   CityInfoDTO cityInfo;
+   String additionalInfo;
    String street;
    
     
     
     public AddressDTO(Address a){
-        this.cdto = new CityInfoDTO(a.getCityinfo());
+        this.cityInfo = new CityInfoDTO(a.getCityinfo());
         this.street = a.getStreet();
-        this.additionalinfo = a.getAdditionalinfo();
+        this.additionalInfo = a.getAdditionalinfo();
     }
 }
