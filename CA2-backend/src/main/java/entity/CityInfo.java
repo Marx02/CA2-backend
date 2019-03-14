@@ -73,8 +73,8 @@ public class CityInfo implements Serializable {
         return addressCollection;
     }
 
-    public void setAddressCollection(Collection<Address> addressCollection) {
-        this.addressCollection = addressCollection;
+    public void addAddress(Address a) {
+        this.addressCollection.add(a);
     }
 
     @Override
