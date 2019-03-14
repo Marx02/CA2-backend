@@ -94,6 +94,10 @@ public class Hobby implements Serializable {
     public void setPersonCollection(Collection<Person> personCollection) {
         this.personCollection = personCollection;
     }
+    
+        public void addToPersonCollection(Person p) {
+        this.personCollection.add(p);
+    }
 
     @Override
     public int hashCode() {

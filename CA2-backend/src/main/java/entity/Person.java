@@ -121,8 +121,8 @@ public class Person implements Serializable {
         return hobbyCollection;
     }
 
-    public void setHobbyCollection(Collection<Hobby> hobbyCollection) {
-        this.hobbyCollection = hobbyCollection;
+    public void addToHobbyCollection(Hobby h) {
+        this.hobbyCollection.add(h);
     }
 
     @XmlTransient
@@ -132,6 +132,10 @@ public class Person implements Serializable {
 
     public void setPhoneCollection(Collection<Phone> phoneCollection) {
         this.phoneCollection = phoneCollection;
+    }
+    
+     public void addToPhoneCollection(Phone ph) {
+        this.phoneCollection.add(ph);
     }
 
     public Address getAddress() {

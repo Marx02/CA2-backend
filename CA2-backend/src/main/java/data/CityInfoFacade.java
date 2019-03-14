@@ -110,7 +110,7 @@ public class CityInfoFacade {
     public CityInfo getCityByZip(int zip) {
         EntityManager em = emf.createEntityManager();
         try {
-            Query q = em.createQuery("select c from CityInfo c where c.zipCode = :zip").setParameter("zip", zip);
+            Query q = em.createQuery("select c from CityInfo c where c.zip = :zip").setParameter("zip", zip);
             return (CityInfo)q.getResultList().get(0);
         } finally {
             em.close();
