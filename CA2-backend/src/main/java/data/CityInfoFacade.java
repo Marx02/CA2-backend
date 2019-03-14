@@ -48,9 +48,9 @@ public class CityInfoFacade {
 //        }
 //
 //    }
-    public void addEntityManager(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
+//    public void addEntityManager(EntityManagerFactory emf) {
+//        this.emf = emf;
+//    }
 
     public CityInfo addCity(CityInfo c) {
         EntityManager em = emf.createEntityManager();
