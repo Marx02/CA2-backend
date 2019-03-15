@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -85,6 +86,15 @@ public class HobbyFacade {
             em.getTransaction().commit();
             return hh;
         } finally {
+            em.close();
+        }
+    }
+    public int getHobbyCount(){
+        EntityManager em = emf.createEntityManager();
+        try{
+            Query q = em.createQuery("select count(e) from Hobby e");
+            return (int) q.getSingleResult();
+        }finally{
             em.close();
         }
     }
