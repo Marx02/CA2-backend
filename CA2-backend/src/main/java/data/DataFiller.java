@@ -24,13 +24,13 @@ public class DataFiller {
         
         public static void main(String[] args) {
             DataFiller df = new DataFiller();
-            df.addPersonTest();
+            df.addPersonToDB();
             //df.delete();
     }
         
       void addPersonTest(){
           
-//        Address a = new Address("Hundigevej 2", "2tv", cif.getCityByZip(2670));
+        Address a = new Address("Hundigevej 2", "2tv", cif.getCityByZip(2670));
 //        Person p = new Person("kim@hotmail.dk", "Kim", "Pedersen", a);
 //        a.addPerson(p);
 //        
@@ -90,8 +90,12 @@ public class DataFiller {
          p2.setFirstName("Casper");
          p2.setLastName("Marx");
          p2.setEmail("stranger@danger.com");
+//         Address a = new Address("Hundigevej 2", "2tv", cif.getCityByZip(2670));
+         Address a = af.getAddressById(36);
+         p2.setAddress(a);
          pf.addPerson(p2);
-          
+         
+         //Addresse elementet skal findes og kan derefter knyttes til personen
       }
       
 
