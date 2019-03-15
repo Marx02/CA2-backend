@@ -37,15 +37,15 @@ public class PersonSimpleDTO {
             for (Phone ph : p.getPhoneCollection()) {
                 this.phoneDTO.add(new PhoneDTO(ph));
             }
-            this.email = p.getEmail();
-            this.adto = new AddressDTO(p.getAddress());
-            this.zipDTO = p.getAddress().getCityinfo().getZip();
-            this.cityDTO = p.getAddress().getCityinfo().getCity();
-            if (!p.getHobbyCollection().isEmpty()) {
-                for (Hobby h : p.getHobbyCollection()) {
-                    this.hobbyDTO.add(new HobbyDTO(h));
-                }
+        }
+        this.email = p.getEmail();
+        this.adto = new AddressDTO(p.getAddress());
+        this.zipDTO = p.getAddress().getCityinfo().getZip();
+        this.cityDTO = p.getAddress().getCityinfo().getCity();
+        if (!p.getHobbyCollection().isEmpty()) {
+            for (Hobby h : p.getHobbyCollection()) {
+                this.hobbyDTO.add(new HobbyDTO(h));
             }
-        } 
+        }
     }
 }
