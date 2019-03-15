@@ -59,5 +59,14 @@ public class PhoneFacade {
             em.close();
         }
     }
+    public int getPhoneCount(){
+        EntityManager em = emf.createEntityManager();
+        try{
+            Query q = em.createQuery("select count(e) from Phone e");
+            return (int) q.getSingleResult();
+        }finally{
+            em.close();
+        }
+    }
 
 }
