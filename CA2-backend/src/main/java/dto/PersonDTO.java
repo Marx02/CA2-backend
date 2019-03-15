@@ -42,7 +42,6 @@ public class PersonDTO {
             }
         }
         this.address = new AddressDTO(p.getAddress());
-
     }
 
     public PersonDTO() {

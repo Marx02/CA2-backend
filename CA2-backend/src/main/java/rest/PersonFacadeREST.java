@@ -54,7 +54,7 @@ public class PersonFacadeREST {
         }
         return Response.ok().entity(gson.toJson(plist)).build();
     }
-
+    
 //    @GET
 //    @Path("/complete")
 //    @Produces(MediaType.APPLICATION_JSON)

@@ -43,8 +43,8 @@ public class AddressFacadeREST {
 
     public AddressFacadeREST() {
     }
-    
-        @GET
+
+    @GET
     @Path("/name/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCityInfoFromName(@PathParam("name") String name) {
@@ -52,8 +52,8 @@ public class AddressFacadeREST {
         AddressDTO cidto = new AddressDTO(af.getAddressByStreet(name));
         return Response.ok().entity(gson.toJson(cidto)).build();
     }
-    
-        @GET
+
+    @GET
     @Path("/id/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCityInfoFromID(@PathParam("id") int id) {

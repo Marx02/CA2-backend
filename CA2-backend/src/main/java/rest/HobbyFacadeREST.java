@@ -58,4 +58,12 @@ public class HobbyFacadeREST {
         return Response.ok().entity(gson.toJson(hdto)).build();
     }
 
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getHobbyById(@PathParam("id") int id) {
+        Hobby hobby = hf.getHobbyById(id);
+        return Response.ok().entity(gson.toJson(hobby)).build();
+    }
+
 }
