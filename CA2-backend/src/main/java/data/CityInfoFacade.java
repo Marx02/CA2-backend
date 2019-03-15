@@ -5,8 +5,10 @@
  */
 package data;
 
+import dto.PersonDTO;
 import entity.CityInfo;
 import entity.Person;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,13 +25,11 @@ public class CityInfoFacade {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2DB");
 
     public CityInfoFacade(EntityManagerFactory emf) {
-        
+
     }
 
     public CityInfoFacade() {
     }
-    
-    
 
 //    public static void main(String[] args) {
 //        EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("CA2DB");
@@ -51,7 +51,6 @@ public class CityInfoFacade {
 //    public void addEntityManager(EntityManagerFactory emf) {
 //        this.emf = emf;
 //    }
-
     public CityInfo addCity(CityInfo c) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -112,20 +111,40 @@ public class CityInfoFacade {
         EntityManager em = emf.createEntityManager();
         try {
             Query q = em.createQuery("select c from CityInfo c where c.zip = :zip").setParameter("zip", zip);
-            return (CityInfo)q.getResultList().get(0);
+            return (CityInfo) q.getResultList().get(0);
         } finally {
             em.close();
         }
     }
-    public int getCityCount(){
+
+    public List<PersonDTO> getPersonsByZip(int zip) {
         EntityManager em = emf.createEntityManager();
-        try{
+        List<PersonDTO> pList = new ArrayList();
+        try {
+//            Query q = em.createQuery("select a.id from Address a where a.cityinfo.zip = :zip").setParameter("zip", zip);
+//            List<Address> ad = q.getResultList();
+//            for (int i = 0; i < ad.size(); i++) {
+            Query q2 = em.createQuery("select p from Person p where p.address.cityinfo.zip = :zip").setParameter("zip", zip);
+            List<Person> pl = q2.getResultList();
+            for (int j = 0; j < pl.size(); j++) {
+                pList.add(new PersonDTO(pl.get(j))); // q2.getResultList();
+            }
+//            }
+            return pList;
+        } finally {
+            em.close();
+        }
+
+    }
+
+    public int getCityCount() {
+        EntityManager em = emf.createEntityManager();
+        try {
             Query q = em.createQuery("select count(e) from CityInfo e");
             return (int) q.getSingleResult();
-        }finally{
+        } finally {
             em.close();
         }
     }
-
 
 }
