@@ -63,5 +63,14 @@ public class AddressFacade {
             em.close();
         }
     }
+    public int getAddressCount(){
+        EntityManager em = emf.createEntityManager();
+        try{
+            Query q = em.createQuery("select count(e) from Address e");
+            return (int) q.getSingleResult();
+        }finally{
+            em.close();
+        }
+    }
 
 }
