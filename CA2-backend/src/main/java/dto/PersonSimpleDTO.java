@@ -38,6 +38,7 @@ public class PersonSimpleDTO {
         }else{
             Phone ph = new Phone();
             ph.setNumber(0);
+            ph.setDescription("N/A");
             this.phoneDTO = new PhoneDTO(ph);
         }
         this.email = p.getEmail();
@@ -51,6 +52,7 @@ public class PersonSimpleDTO {
         }else{
             Hobby ho = new Hobby();
             ho.setName("N/A");
+            ho.setId(0);
             ho.setDescription("N/A");
             this.hobbyDTO = new HobbyDTO(ho);
         }
