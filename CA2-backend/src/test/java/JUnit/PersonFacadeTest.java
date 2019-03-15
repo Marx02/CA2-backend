@@ -58,12 +58,12 @@ public class PersonFacadeTest {
         String name = "Raynor";
         Person tp = pf.getPersonByName(name);
         int id = tp.getId();
-        Person tp1 = pf.deletePersonById(id, tp.getAddress());
+        Person tp1 = pf.deletePersonById(id);
         tp1.getAddress();
         String name2 = "John";
         Person tp2 = pf.getPersonByName(name2);
         int id2 = tp2.getId();
-        pf.deletePersonById(id2, tp2.getAddress());
+        pf.deletePersonById(id2);
     }
     @Before
     public void setUp() {
@@ -118,7 +118,7 @@ public class PersonFacadeTest {
         String name = "Michael";
         Person tp = pf.getPersonByName(name);
         int id = tp.getId();
-        Person tp1 = pf.deletePersonById(id, tp.getAddress());
+        Person tp1 = pf.deletePersonById(id);
         assertEquals(id,tp.getId(),0.1);
     }
     @Test

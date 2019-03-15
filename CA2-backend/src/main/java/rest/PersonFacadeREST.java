@@ -112,16 +112,14 @@ public class PersonFacadeREST {
     @Consumes(MediaType.APPLICATION_JSON)
     public void postPerson(String content) {
         Person p = gson.fromJson(content, Person.class);
-//        Collection<Hobby> hcol = new ArrayList();
-//        hcol.add(new Hobby[])
         pf.addPerson(p);
     }
 
-//    @DELETE
-//    @Path("/{id}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response deleteCustomer(@PathParam("id") int id) {
-//        Person p = pf.deletePersonById(id);
-//        return Response.ok().entity(gson.toJson(p)).build();
-//    }
+    @DELETE
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deletePerson(@PathParam("id") int id) {
+        Person p = pf.deletePersonById(id);
+        return Response.ok().entity(gson.toJson(p)).build();
+    }
 }

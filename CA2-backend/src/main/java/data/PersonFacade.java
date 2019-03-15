@@ -109,13 +109,12 @@ public class PersonFacade {
         }
     }
 
-    public Person deletePersonById(int id, Address a) {
+    public Person deletePersonById(int id) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             Person p = em.find(Person.class, (Integer) id);
-            a = em.merge(a);
-            em.remove(a);
+            em.remove(p.getAddress());
             em.remove(p);
             em.getTransaction().commit();
             return p;
