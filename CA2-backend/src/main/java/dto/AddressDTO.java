@@ -13,7 +13,6 @@ import entity.Address;
  */
 public class AddressDTO {
 
-    CityInfoDTO cdto;
     String additionalinfo;
     String street;
     int zip;

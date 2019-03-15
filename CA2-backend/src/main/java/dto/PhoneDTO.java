@@ -27,7 +27,6 @@ public class PhoneDTO {
 //    public PhoneDTO(Phone personByPhone) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
-
     PhoneDTO(String email) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

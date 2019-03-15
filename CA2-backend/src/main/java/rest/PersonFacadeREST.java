@@ -51,9 +51,9 @@ public class PersonFacadeREST {
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllPersons() {
-        ArrayList<PersonSimpleDTO> plist = new ArrayList();
+        ArrayList<PersonDTO> plist = new ArrayList();
         for (Person p : (Collection<Person>) pf.getAllPersons()) {
-            plist.add(new PersonSimpleDTO(p));
+            plist.add(new PersonDTO(p));
         }
         return Response.ok().entity(gson.toJson(plist)).build();
     }
@@ -77,9 +77,9 @@ public class PersonFacadeREST {
     @Path("/name/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPersonFromName(@PathParam("name") String name) {
-        List<PersonSimpleDTO> pList = new ArrayList();
+        List<PersonDTO> pList = new ArrayList();
         for(Person p : pf.getPersonsByName(name)){
-            pList.add(new PersonSimpleDTO(p));
+            pList.add(new PersonDTO(p));
         }
         return Response.ok().entity(gson.toJson(pList)).build();
     }
