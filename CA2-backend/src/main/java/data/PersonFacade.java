@@ -61,6 +61,17 @@ public class PersonFacade {
             em.close();
         }
     }
+        public Person addPerson(Person p) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(p);
+            em.getTransaction().commit();
+            return p;
+        } finally {
+            em.close();
+        }
+    }
 
 //    public Person getPersonByName(String name) {
 //        EntityManager em = emf.createEntityManager();
