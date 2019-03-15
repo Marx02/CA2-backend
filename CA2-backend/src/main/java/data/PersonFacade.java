@@ -157,4 +157,13 @@ public class PersonFacade {
         EntityManager em = emf.createEntityManager();
         return em.createQuery("SELECT p FROM Person p").getResultList();
     }
+    public int getPersonCount(){
+        EntityManager em = emf.createEntityManager();
+        try{
+            Query q = em.createQuery("select count(e) from Person e");
+            return (int) q.getSingleResult();
+        }finally{
+            em.close();
+        }
+    }
 }
