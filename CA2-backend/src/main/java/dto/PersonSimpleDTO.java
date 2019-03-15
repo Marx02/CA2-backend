@@ -35,6 +35,10 @@ public class PersonSimpleDTO {
             for (Phone ph : p.getPhoneCollection()) {
                 this.phoneDTO = new PhoneDTO(ph);
             }
+        }else{
+            Phone ph = new Phone();
+            ph.setNumber(0);
+            this.phoneDTO = new PhoneDTO(ph);
         }
         this.email = p.getEmail();
         this.adto = new AddressDTO(p.getAddress());
@@ -44,6 +48,11 @@ public class PersonSimpleDTO {
             for (Hobby h : p.getHobbyCollection()) {
                 this.hobbyDTO = new HobbyDTO(h);
             }
+        }else{
+            Hobby ho = new Hobby();
+            ho.setName("N/A");
+            ho.setDescription("N/A");
+            this.hobbyDTO = new HobbyDTO(ho);
         }
     }
 
