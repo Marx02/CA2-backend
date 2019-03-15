@@ -7,6 +7,7 @@ package rest;
 
 import com.google.gson.Gson;
 import data.PersonFacade;
+import dto.PersonContactInfoDTO;
 import dto.PersonDTO;
 import dto.PersonSimpleDTO;
 import entity.Person;
@@ -54,7 +55,7 @@ public class PersonFacadeREST {
         }
         return Response.ok().entity(gson.toJson(plist)).build();
     }
-    
+
 //    @GET
 //    @Path("/complete")
 //    @Produces(MediaType.APPLICATION_JSON)
@@ -78,11 +79,31 @@ public class PersonFacadeREST {
         return Response.ok().entity(gson.toJson(pdto)).build();
     }
 
+    @GET
+    @Path("/contactinfo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getContactInfo() {
+        ArrayList<PersonContactInfoDTO> cList = new ArrayList();
+        for (Person p : (Collection<Person>) pf.getAllPersons()) {
+            cList.add(new PersonContactInfoDTO(p));
+        }
+        return Response.ok().entity(gson.toJson(cList)).build();
+    }
+
+    @GET
+    @Path("/contactinfo/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getContactInfoById(@PathParam("id") int id) {
+        PersonContactInfoDTO pcidto = new PersonContactInfoDTO(pf.getPersonById(id));
+        return Response.ok().entity(gson.toJson(pcidto)).build();
+
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void postPerson(String content) {
         Person p = gson.fromJson(content, Person.class);
-      //  pf.addPerson(p);
+        //  pf.addPerson(p);
     }
 
 //    @DELETE
@@ -92,5 +113,4 @@ public class PersonFacadeREST {
 //        Person p = pf.deletePersonById(id);
 //        return Response.ok().entity(gson.toJson(p)).build();
 //    }
-
 }
