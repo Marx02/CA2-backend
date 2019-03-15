@@ -7,6 +7,7 @@ package rest;
 
 import com.google.gson.Gson;
 import data.PersonFacade;
+import dto.PersonDTO;
 import dto.PersonSimpleDTO;
 import entity.Person;
 import java.util.ArrayList;
@@ -65,36 +66,31 @@ public class PersonFacadeREST {
     @Path("/id/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPersonFromID(@PathParam("id") int id) {
-
-        Person p = pf.getPersonById(id);
-        //  PersonFullDTO pdto = new PersonFullDTO(p);
-        return Response.ok().entity(gson.toJson(p)).build();
+        PersonDTO pdto = new PersonDTO(pf.getPersonById(id));
+        return Response.ok().entity(gson.toJson(pdto)).build();
     }
 
     @GET
     @Path("/name/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPersonFromName(@PathParam("name") String name) {
-
-        Person p = pf.getPersonByName(name);
-        System.out.println(p);
-        //  PersonFullDTO pdto = new PersonFullDTO(p);
-        return Response.ok().entity(gson.toJson(p)).build();
+        PersonDTO pdto = new PersonDTO(pf.getPersonByName(name));
+        return Response.ok().entity(gson.toJson(pdto)).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void postPerson(String content) {
         Person p = gson.fromJson(content, Person.class);
-        pf.addPerson(p);
+      //  pf.addPerson(p);
     }
 
-    @DELETE
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteCustomer(@PathParam("id") int id) {
-        Person p = pf.deletePersonById(id);
-        return Response.ok().entity(gson.toJson(p)).build();
-    }
+//    @DELETE
+//    @Path("/{id}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response deleteCustomer(@PathParam("id") int id) {
+//        Person p = pf.deletePersonById(id);
+//        return Response.ok().entity(gson.toJson(p)).build();
+//    }
 
 }

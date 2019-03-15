@@ -24,9 +24,31 @@ public class DataFiller {
         
         public static void main(String[] args) {
             DataFiller df = new DataFiller();
-            df.addPersonToDB();
+            df.addPersonTest();
             //df.delete();
     }
+        
+      void addPersonTest(){
+          
+//        Address a = new Address("Hundigevej 2", "2tv", cif.getCityByZip(2670));
+//        Person p = new Person("kim@hotmail.dk", "Kim", "Pedersen", a);
+//        a.addPerson(p);
+//        
+//        Hobby h = new Hobby("Dumspilning", "Kim har opnået sort bælte inde for denne disciplin");
+//        p.addToHobbyCollection(h);
+//        h.addToPersonCollection(p);
+//        
+//        Phone ph = new Phone(43434388, "Arbejde", p);
+//        ph.setPerson(p);
+//        p.addToPhoneCollection(ph);
+//        
+//        pf.addPerson(p, a);
+        //pf.deletePersonById(69);
+        
+        Person p = pf.getPersonById(1);
+          System.out.println(p.getAddress().getStreet());;
+        
+      }
     
       void addPersonToDB(){
           
@@ -69,9 +91,6 @@ public class DataFiller {
           
       }
       
-      private void delete(){
-          System.out.println(pf.deletePersonById(2).getFirstName());
-          
-      }
+
         
 }

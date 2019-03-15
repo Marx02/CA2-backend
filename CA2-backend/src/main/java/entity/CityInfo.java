@@ -56,6 +56,11 @@ public class CityInfo implements Serializable {
         this.zip = zip;
     }
 
+    public CityInfo(Integer zip, String city) {
+        this.zip = zip;
+        this.city = city;
+    }
+  
     public Integer getZip() {
         return zip;
     }

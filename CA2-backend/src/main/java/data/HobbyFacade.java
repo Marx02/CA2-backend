@@ -5,7 +5,9 @@
  */
 package data;
 
+import dto.HobbyDTO;
 import entity.Hobby;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -42,6 +44,15 @@ public class HobbyFacade {
     public List<Hobby> getAllHobbys() {
         EntityManager em = getManager();
         return em.createQuery("SELECT h FROM Hobby h").getResultList();
+    }
+    
+        public List<HobbyDTO> getAllHobbiesDTO() {
+        EntityManager em = emf.createEntityManager();
+        List<HobbyDTO> hList = new ArrayList();
+        for (Hobby h : (List<Hobby>) em.createQuery("SELECT h FROM Hobby h").getResultList()) {
+            hList.add(new HobbyDTO(h));
+        }
+        return hList;
     }
 
     public Hobby getHobbyById(int id) {

@@ -33,7 +33,7 @@ public class PersonSimpleDTO {
         this.lName = p.getLastName();
         if (p.getPhoneCollection() != null) {
             for (Phone ph : p.getPhoneCollection()) {
-                this.phoneDTO = new PhoneDTO(ph);
+                this.phone = new PhoneDTO(ph);
             }
         }
         this.email = p.getEmail();

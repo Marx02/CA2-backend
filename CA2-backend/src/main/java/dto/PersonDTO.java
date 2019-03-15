@@ -9,6 +9,7 @@ import entity.Address;
 import entity.Hobby;
 import entity.Person;
 import entity.Phone;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,9 +22,9 @@ public class PersonDTO {
     String firstName;
     String lastName;
     String email;
-    List<Phone> phoneList;
-    Address address;
-    List<Hobby> hobbyList;
+    ArrayList<PhoneDTO> phoneList = new ArrayList();
+    AddressDTO address;
+    ArrayList<HobbyDTO> hobbyList = new ArrayList();
 
     public PersonDTO(Person p) {
         this.id = p.getId();
@@ -32,15 +33,15 @@ public class PersonDTO {
         this.email = p.getEmail();
         if (p.getPhoneCollection() != null) {
             for (Phone ph : p.getPhoneCollection()) {
-                phoneList.add(ph);
+                this.phoneList.add(new PhoneDTO(ph));
             }
         }
         if (p.getHobbyCollection() != null) {
-            for (Hobby h : hobbyList) {
-                hobbyList.add(h);
+            for (Hobby h : p.getHobbyCollection()) {
+                this.hobbyList.add(new HobbyDTO(h));
             }
         }
-        this.address = p.getAddress();
+        this.address = new AddressDTO(p.getAddress());
 
     }
 
@@ -79,27 +80,27 @@ public class PersonDTO {
         this.email = email;
     }
 
-    public List<Phone> getPhoneList() {
+    public ArrayList<PhoneDTO> getPhoneList() {
         return phoneList;
     }
 
-    public void setPhoneList(List<Phone> phoneList) {
+    public void setPhoneList(ArrayList<PhoneDTO> phoneList) {
         this.phoneList = phoneList;
     }
 
-    public Address getAddress() {
+    public AddressDTO getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(AddressDTO address) {
         this.address = address;
     }
 
-    public List<Hobby> getHobbyList() {
+    public ArrayList<HobbyDTO> getHobbyList() {
         return hobbyList;
     }
 
-    public void setHobbyList(List<Hobby> hobbyList) {
+    public void setHobbyList(ArrayList<HobbyDTO> hobbyList) {
         this.hobbyList = hobbyList;
     }
 

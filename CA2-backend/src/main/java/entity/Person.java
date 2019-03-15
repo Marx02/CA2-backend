@@ -72,8 +72,7 @@ public class Person implements Serializable {
         this.id = id;
     }
 
-    public Person(Integer id, String email, String firstname, String lastname, Address address) {
-        this.id = id;
+    public Person(String email, String firstname, String lastname, Address address) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -81,7 +80,6 @@ public class Person implements Serializable {
     }
     
     public Person( String email, String firstname, String lastname, Collection<Hobby> hobbyCollection, Collection<Phone> phoneCollection, Address address) {
-        this.id = id;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;

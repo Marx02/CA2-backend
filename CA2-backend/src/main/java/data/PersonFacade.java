@@ -1,6 +1,7 @@
 /* Esben Dalgaard; DECK-CS */
 package data;
 
+import entity.Address;
 import entity.Hobby;
 import entity.Person;
 import java.util.List;
@@ -48,10 +49,11 @@ public class PersonFacade {
         return emf.createEntityManager();
     }
 
-    public Person addPerson(Person p) {
+    public Person addPerson(Person p, Address a) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
+            em.persist(a);
             em.persist(p);
             em.getTransaction().commit();
             return p;
@@ -60,12 +62,23 @@ public class PersonFacade {
         }
     }
 
+//    public Person getPersonByName(String name) {
+//        EntityManager em = emf.createEntityManager();
+//        try {
+//            Query q = em.createQuery("select c from Person c where c.firstname = :name");
+//            q.setParameter("name", name);
+//            return (Person) q.getResultList().get(0);
+//        } finally {
+//            em.close();
+//        }
+//    }
     public Person getPersonByName(String name) {
         EntityManager em = emf.createEntityManager();
         try {
             Query q = em.createQuery("select c from Person c where c.firstname = :name");
             q.setParameter("name", name);
-            return (Person) q.getResultList().get(0);
+            Person p = (Person) q.getResultList().get(0);
+            return getPersonById(p.getId());
         } finally {
             em.close();
         }
@@ -81,11 +94,23 @@ public class PersonFacade {
         }
     }
 
-    public Person deletePersonById(int id) {
+    public Person getPersonWithAddressById(int id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            Person p = em.find(Person.class, (Integer) id);
+            return p;
+        } finally {
+            em.close();
+        }
+    }
+
+    public Person deletePersonById(int id, Address a) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             Person p = em.find(Person.class, (Integer) id);
+            a = em.merge(a);
+            em.remove(a);
             em.remove(p);
             em.getTransaction().commit();
             return p;
