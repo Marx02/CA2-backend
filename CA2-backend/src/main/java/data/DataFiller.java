@@ -45,9 +45,6 @@ public class DataFiller {
 //        pf.addPerson(p, a);
         //pf.deletePersonById(69);
         
-        Person p = pf.getPersonById(1);
-          System.out.println(p.getAddress().getStreet());;
-        
       }
     
       void addPersonToDB(){

@@ -50,11 +50,11 @@ public class PhoneFacade {
         return pList;
     }
 
-    public Phone getPersonByNumber(int pnumber) {
+    public Person getPersonByNumber(int pnumber) {
         EntityManager em = emf.createEntityManager();
         try {
-            Query q = em.createQuery("SELECT p FROM Phone p WHERE p.pnumber = :number").setParameter("pnumber", pnumber);
-            return (Phone) q.getResultList();
+            Phone p = em.find(Phone.class, (Integer) pnumber);
+            return p.getPerson();
         } finally {
             em.close();
         }

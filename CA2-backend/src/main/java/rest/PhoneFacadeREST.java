@@ -7,6 +7,7 @@ package rest;
 
 import com.google.gson.Gson;
 import data.PhoneFacade;
+import dto.PersonDTO;
 import dto.PhoneDTO;
 import entity.Person;
 import entity.Phone;
@@ -46,9 +47,7 @@ public class PhoneFacadeREST {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPersonFromNumber(@PathParam("number") int number) {
         
-        //Virker ikke, har prøvet at lave getPersonByNumber som person
-
-        return Response.ok().entity(gson.toJson(pf.getPersonByNumber(number))).build();
+        return Response.ok().entity(gson.toJson(new PersonDTO(pf.getPersonByNumber(number)))).build();
     }
 
     @GET
