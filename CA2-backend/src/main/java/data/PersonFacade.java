@@ -4,6 +4,7 @@ package data;
 import entity.Address;
 import entity.Hobby;
 import entity.Person;
+import entity.Phone;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -49,22 +50,15 @@ public class PersonFacade {
         return emf.createEntityManager();
     }
 
-    public Person addPerson(Person p, Address a) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.persist(a);
-            em.persist(p);
-            em.getTransaction().commit();
-            return p;
-        } finally {
-            em.close();
-        }
-    }
         public Person addPerson(Person p) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
+            em.persist(p.getAddress());
+            for(Phone ph : p.getPhoneCollection()){
+                ph.setPerson(p);
+                em.persist(ph);
+            }
             em.persist(p);
             em.getTransaction().commit();
             return p;

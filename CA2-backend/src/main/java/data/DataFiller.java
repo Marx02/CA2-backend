@@ -30,7 +30,7 @@ public class DataFiller {
         
       void addPersonTest(){
           
-        Address a = new Address("Hundigevej 2", "2tv", cif.getCityByZip(2670));
+//        Address a = new Address("Hundigevej 2", "2tv", cif.getCityByZip(2670));
 //        Person p = new Person("kim@hotmail.dk", "Kim", "Pedersen", a);
 //        a.addPerson(p);
 //        
@@ -42,7 +42,7 @@ public class DataFiller {
 //        ph.setPerson(p);
 //        p.addToPhoneCollection(ph);
 //        
-//        pf.addPerson(p, a);
+//        pf.addPerson(p);
         //pf.deletePersonById(69);
         
       }

@@ -41,14 +41,14 @@ public class PersonFacadeTest {
         p.setLastName("Sommer");
         p.setFirstName("Michael");
         p.setAddress(defaultAddress);
-        pf.addPerson(p, defaultAddress);
+        pf.addPerson(p);
         
         Person p2 = new Person();
         p2.setEmail("jim@raynor.com");
         p2.setLastName("Jim");
         p2.setFirstName("Raynor");
         p2.setAddress(defaultAddress);
-        pf.addPerson(p2, defaultAddress);
+        pf.addPerson(p2);
     }
     
     @AfterClass
@@ -92,7 +92,7 @@ public class PersonFacadeTest {
         p.setFirstName("John");
         p.setLastName("Johnson");
         p.setAddress(defaultAddress);
-        Person tp = pf.addPerson(p, defaultAddress);
+        Person tp = pf.addPerson(p);
         assertEquals(p.getFirstName(),tp.getFirstName());
     }
     @Test

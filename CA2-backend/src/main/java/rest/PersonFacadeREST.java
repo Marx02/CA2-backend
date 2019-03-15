@@ -11,6 +11,7 @@ import dto.PersonContactInfoDTO;
 import dto.PersonDTO;
 import dto.PersonSimpleDTO;
 import entity.Address;
+import entity.Hobby;
 import entity.Person;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -111,9 +112,9 @@ public class PersonFacadeREST {
     @Consumes(MediaType.APPLICATION_JSON)
     public void postPerson(String content) {
         Person p = gson.fromJson(content, Person.class);
-        Address a = p.getAddress();
-        p.setAddress(a);
-        pf.addPerson(p, a);
+//        Collection<Hobby> hcol = new ArrayList();
+//        hcol.add(new Hobby[])
+        pf.addPerson(p);
     }
 
 //    @DELETE
