@@ -8,6 +8,8 @@ package dto;
 import entity.Hobby;
 import entity.Person;
 import entity.Phone;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,42 +22,30 @@ public class PersonSimpleDTO {
     String lName;
     PhoneDTO phdto;
     CityInfoDTO cdto;
-    PhoneDTO phoneDTO;
+    List<PhoneDTO> phoneDTO = new ArrayList();
     AddressDTO adto;
     String email;
     int zipDTO;
     String cityDTO;
-    HobbyDTO hobbyDTO;
+    List<HobbyDTO> hobbyDTO = new ArrayList();
 
     public PersonSimpleDTO(Person p) {
         this.id = p.getId();
         this.fName = p.getFirstName();
         this.lName = p.getLastName();
-        if (p.getPhoneCollection() != null) {
+        if (!p.getPhoneCollection().isEmpty()) {
             for (Phone ph : p.getPhoneCollection()) {
-                this.phoneDTO = new PhoneDTO(ph);
+                this.phoneDTO.add(new PhoneDTO(ph));
             }
-        }else{
-            Phone ph = new Phone();
-            ph.setNumber(0);
-            ph.setDescription("N/A");
-            this.phoneDTO = new PhoneDTO(ph);
-        }
-        this.email = p.getEmail();
-        this.adto = new AddressDTO(p.getAddress());
-        this.zipDTO = p.getAddress().getCityinfo().getZip();
-        this.cityDTO = p.getAddress().getCityinfo().getCity();
-        if (p.getHobbyCollection() != null) {
-            for (Hobby h : p.getHobbyCollection()) {
-                this.hobbyDTO = new HobbyDTO(h);
+            this.email = p.getEmail();
+            this.adto = new AddressDTO(p.getAddress());
+            this.zipDTO = p.getAddress().getCityinfo().getZip();
+            this.cityDTO = p.getAddress().getCityinfo().getCity();
+            if (!p.getHobbyCollection().isEmpty()) {
+                for (Hobby h : p.getHobbyCollection()) {
+                    this.hobbyDTO.add(new HobbyDTO(h));
+                }
             }
-        }else{
-            Hobby ho = new Hobby();
-            ho.setName("N/A");
-            ho.setId(0);
-            ho.setDescription("N/A");
-            this.hobbyDTO = new HobbyDTO(ho);
-        }
+        } 
     }
-
 }
