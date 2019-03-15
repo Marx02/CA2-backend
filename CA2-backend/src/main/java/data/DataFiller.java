@@ -53,7 +53,9 @@ public class DataFiller {
       void addPersonToDB(){
           
           
+          /*
           
+          //Adds a person with Hobby, phone, address and city, all interconnected.
           Person p = new Person();
           p.setEmail("dan.tomicic@gmail.com");
           p.setFirstName("Dan");
@@ -74,10 +76,7 @@ public class DataFiller {
           h.setDescription("ez");
           h.addToPersonCollection(p);
           p.addToHobbyCollection(h);
-//          p.addToHobbyCollection(h);
-          
           Address a = new Address();
- 
           a.setStreet("Hyggevej 25");
           a.setAdditionalinfo("3th");
           a.addPerson(p);
@@ -85,9 +84,13 @@ public class DataFiller {
           a.setCityinfo(ci);
           p.setAddress(a);
           cif.addCity(ci);
-//          System.out.println(p2.getHobbyCollection());
+          */
           
-         // Person ptest = new Person("kim@hotmail.dk", "Kim", "Pedersen", Address address);
+         Person p2 = new Person();
+         p2.setFirstName("Casper");
+         p2.setLastName("Marx");
+         p2.setEmail("stranger@danger.com");
+         pf.addPerson(p2);
           
       }
       
