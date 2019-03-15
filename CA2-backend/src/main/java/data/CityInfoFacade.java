@@ -117,6 +117,15 @@ public class CityInfoFacade {
             em.close();
         }
     }
+    public int getCityCount(){
+        EntityManager em = emf.createEntityManager();
+        try{
+            Query q = em.createQuery("select count(e) from CityInfo e");
+            return (int) q.getSingleResult();
+        }finally{
+            em.close();
+        }
+    }
 
 
 }
