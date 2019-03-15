@@ -10,6 +10,7 @@ import data.PersonFacade;
 import dto.PersonContactInfoDTO;
 import dto.PersonDTO;
 import dto.PersonSimpleDTO;
+import entity.Address;
 import entity.Person;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -110,7 +111,9 @@ public class PersonFacadeREST {
     @Consumes(MediaType.APPLICATION_JSON)
     public void postPerson(String content) {
         Person p = gson.fromJson(content, Person.class);
-        //  pf.addPerson(p);
+        Address a = p.getAddress();
+        p.setAddress(a);
+        pf.addPerson(p, a);
     }
 
 //    @DELETE
