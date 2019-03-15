@@ -22,6 +22,10 @@ public class PersonSimpleDTO {
     CityInfoDTO cdto;
     PhoneDTO phoneDTO;
     AddressDTO adto;
+    String email;
+    int zipDTO;
+    String cityDTO;
+    HobbyDTO hobbyDTO;
 
     public PersonSimpleDTO(Person p) {
         this.id = p.getId();
@@ -32,8 +36,15 @@ public class PersonSimpleDTO {
                 this.phoneDTO = new PhoneDTO(ph);
             }
         }
+        this.email = p.getEmail();
         this.adto = new AddressDTO(p.getAddress());
-
+        this.zipDTO = p.getAddress().getCityinfo().getZip();
+        this.cityDTO = p.getAddress().getCityinfo().getCity();
+        if (p.getHobbyCollection() != null) {
+            for (Hobby h : p.getHobbyCollection()) {
+                this.hobbyDTO = new HobbyDTO(h);
+            }
+        }
     }
 
 }

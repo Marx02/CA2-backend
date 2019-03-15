@@ -12,16 +12,17 @@ import entity.Address;
  * @author uber
  */
 public class AddressDTO {
-    
-   CityInfoDTO cdto;
-   String additionalinfo;
-   String street;
-   
-    
-    
-    public AddressDTO(Address a){
-        this.cdto = new CityInfoDTO(a.getCityinfo());
+
+    CityInfoDTO cdto;
+    String additionalinfo;
+    String street;
+    int zip;
+    String city;
+
+    public AddressDTO(Address a) {
         this.street = a.getStreet();
         this.additionalinfo = a.getAdditionalinfo();
+        this.zip = a.getCityinfo().getZip();
+        this.city = a.getCityinfo().getCity();
     }
 }
