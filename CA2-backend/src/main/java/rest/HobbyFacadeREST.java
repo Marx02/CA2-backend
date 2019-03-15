@@ -7,6 +7,7 @@ package rest;
 
 import com.google.gson.Gson;
 import data.HobbyFacade;
+import dto.HobbyDTO;
 import entity.Hobby;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -52,8 +53,9 @@ public class HobbyFacadeREST {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllHobbies() {
 
+        List<HobbyDTO> hdto = hf.getAllHobbiesDTO();
         //  PersonFullDTO pdto = new PersonFullDTO(p);
-        return Response.ok().entity(gson.toJson(hf.getAllHobbys())).build();
+        return Response.ok().entity(gson.toJson(hdto)).build();
     }
 
 }
