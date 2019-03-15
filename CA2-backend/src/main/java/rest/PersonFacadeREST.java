@@ -77,9 +77,9 @@ public class PersonFacadeREST {
     @Path("/name/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPersonFromName(@PathParam("name") String name) {
-        List<PersonDTO> pList = new ArrayList();
+        List<PersonSimpleDTO> pList = new ArrayList();
         for(Person p : pf.getPersonsByName(name)){
-            pList.add(new PersonDTO(p));
+            pList.add(new PersonSimpleDTO(p));
         }
         return Response.ok().entity(gson.toJson(pList)).build();
     }

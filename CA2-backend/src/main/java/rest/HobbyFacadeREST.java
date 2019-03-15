@@ -52,7 +52,7 @@ public class HobbyFacadeREST {
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllHobbies() {
-        
+
         List<HobbyDTO> hdto = hf.getAllHobbiesDTO();
         return Response.ok().entity(gson.toJson(hdto)).build();
     }
@@ -61,9 +61,17 @@ public class HobbyFacadeREST {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getHobbyById(@PathParam("id") int id) {
-        
+
         HobbyDTO hobby = new HobbyDTO(hf.getHobbyById(id));
         return Response.ok().entity(gson.toJson(hobby)).build();
     }
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void postPerson(String content) {
+        Hobby h = gson.fromJson(content, Hobby.class);
+        hf.addHobby(h);
+    }
+    
+    
 }
