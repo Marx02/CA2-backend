@@ -25,6 +25,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import data.CityInfoFacade;
 import dto.CityInfoDTO;
+import dto.PersonDTO;
 
 /**
  *
@@ -84,6 +85,13 @@ public class CityInfoFacadeREST {
 
         CityInfo ci = cif.getCityByZip(zip);
         return Response.ok().entity(gson.toJson(ci)).build();
+    }
+    
+    @GET
+    @Path("/person/zip/{zip}")
+    public Response getPersonsByZip(@PathParam("zip") int zip) {
+        List<PersonDTO> pdto = cif.getPersonsByZip(zip);
+        return Response.ok().entity(gson.toJson(pdto)).build();
     }
 
     @DELETE
