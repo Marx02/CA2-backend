@@ -91,12 +91,19 @@ public class PersonFacadeREST {
     }
 
     @GET
-    @Path("/contactinfo/{id}")
+    @Path("/contactinfo/id/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getContactInfoById(@PathParam("id") int id) {
         PersonContactInfoDTO pcidto = new PersonContactInfoDTO(pf.getPersonById(id));
         return Response.ok().entity(gson.toJson(pcidto)).build();
-
+    }
+    
+    @GET
+    @Path("/contactinfo/name/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getContactInfoByName(@PathParam("name") String name){
+        PersonContactInfoDTO pcidto = new PersonContactInfoDTO(pf.getPersonByName(name));
+        return Response.ok().entity(gson.toJson(pcidto)).build();
     }
 
     @POST
