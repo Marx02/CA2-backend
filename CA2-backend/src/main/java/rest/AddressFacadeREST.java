@@ -57,7 +57,7 @@ public class AddressFacadeREST {
     @Path("/id/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCityInfoFromID(@PathParam("id") int id) {
-
+                
         AddressDTO ci = new AddressDTO(af.getAddressById(id));
         return Response.ok().entity(gson.toJson(ci)).build();
     }
