@@ -81,7 +81,7 @@ public class PersonFacade {
         EntityManager em = emf.createEntityManager();
         try {
             Query q = em.createQuery("select c from Person c where c.firstname = :name");
-            q.setParameter("name", name);
+            q.setParameter("name", name);   
             Person p = (Person) q.getResultList().get(0);
             return getPersonById(p.getId());
         } finally {
@@ -168,6 +168,8 @@ public class PersonFacade {
             pg.setFirstName(p.getFirstName());
             pg.setLastName(p.getLastName());
             pg.setEmail(p.getEmail());
+            pg.setAddress(p.getAddress());
+            em.merge(pg);
             em.getTransaction().commit();
             //Query methode:
 //            em.getTransaction().begin();

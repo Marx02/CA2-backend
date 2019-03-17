@@ -119,7 +119,7 @@ public class PersonFacadeREST {
         return Response.ok().entity(gson.toJson(p)).build();
     }
 
-        @POST
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public Response putPerson(String content) {
         Person p = gson.fromJson(content, Person.class);
