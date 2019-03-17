@@ -159,4 +159,34 @@ public class PersonFacade {
             em.close();
         }
     }
+    
+        public Person editPerson(Person p) {
+        EntityManager em = getManager();
+        Person pg = em.find(Person.class, p.getId());
+        try {
+            em.getTransaction().begin();
+            pg.setFirstName(p.getFirstName());
+            pg.setLastName(p.getLastName());
+            pg.setEmail(p.getEmail());
+            em.getTransaction().commit();
+            //Query methode:
+//            em.getTransaction().begin();
+//            int id = p.getId();
+//            String fname = pg.getfName();
+//            String lName = pg.getlName();
+//            String phone = pg.getPhone();
+//            em.createQuery("UPDATE Person p SET p.fName = :fName, p.lName = :lName, p.phone = :phone  WHERE p.id = :id")
+//                    .setParameter("id", id)
+//                    .setParameter("fName", fname)
+//                    .setParameter("lName", lName)
+//                    .setParameter("phone", phone)
+//                    .executeUpdate();
+//            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return pg;
+    }
+
+    
 }

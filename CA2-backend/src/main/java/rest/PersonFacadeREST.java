@@ -110,14 +110,23 @@ public class PersonFacadeREST {
         PersonContactInfoDTO pcidto = new PersonContactInfoDTO(pf.getPersonByName(name));
         return Response.ok().entity(gson.toJson(pcidto)).build();
     }
-
+    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void postPerson(String content) {
+    public Response postPerson(String content) {
         Person p = gson.fromJson(content, Person.class);
         pf.addPerson(p);
+        return Response.ok().entity(gson.toJson(p)).build();
     }
 
+        @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putPerson(String content) {
+        Person p = gson.fromJson(content, Person.class);
+        pf.editPerson(p);
+        return Response.ok().entity(gson.toJson(p)).build();
+    }
+    
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
