@@ -93,6 +93,13 @@ public class CityInfoFacadeREST {
         List<PersonDTO> pdto = cif.getPersonsByZip(zip);
         return Response.ok().entity(gson.toJson(pdto)).build();
     }
+    
+        @GET
+    @Path("/person/city/{city}")
+    public Response getPersonsByZip(@PathParam("city") String city) {
+        List<PersonDTO> pdto = cif.getPersonsByCity(city);
+        return Response.ok().entity(gson.toJson(pdto)).build();
+    }
 
     @DELETE
     @Path("/{zip}")

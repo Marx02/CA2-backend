@@ -136,6 +136,21 @@ public class CityInfoFacade {
         }
 
     }
+    
+        public List<PersonDTO> getPersonsByCity(String city) {
+        EntityManager em = emf.createEntityManager();
+        List<PersonDTO> pList = new ArrayList();
+        try {
+            Query q2 = em.createQuery("select p from Person p where p.address.cityinfo.city = :city").setParameter("city", city);
+            List<Person> pl = q2.getResultList();
+            for (int j = 0; j < pl.size(); j++) {
+                pList.add(new PersonDTO(pl.get(j)));
+            }
+            return pList;
+        } finally {
+            em.close();
+        }
+    }
 
     public int getCityCount() {
         EntityManager em = emf.createEntityManager();
