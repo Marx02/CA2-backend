@@ -6,6 +6,9 @@ cache:
     - $HOME/.m2
 
 script:
+  - mvn verify -Ptest
+
+after_success:
   - mvn tomcat7:deploy -Pdeployremote
   
 
