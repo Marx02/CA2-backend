@@ -6,6 +6,8 @@ cache:
     - $HOME/.m2
 
 script:
+
+after_success:
   - mvn tomcat7:deploy -Pdeployremote
   
 
