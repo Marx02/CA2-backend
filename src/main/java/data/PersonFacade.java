@@ -169,7 +169,7 @@ public class PersonFacade {
             pg.setLastName(p.getLastName());
             pg.setEmail(p.getEmail());
             pg.setAddress(p.getAddress());
-            em.merge(pg);
+            //em.merge(pg);
             em.getTransaction().commit();
             //Query methode:
 //            em.getTransaction().begin();
