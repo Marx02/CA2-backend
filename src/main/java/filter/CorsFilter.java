@@ -16,7 +16,7 @@ import javax.ws.rs.ext.Provider;
  *
  * @author thomas
  */
-//@PreMatching
+@PreMatching
 @Provider
 public class CorsFilter implements ContainerResponseFilter {
   @Override
