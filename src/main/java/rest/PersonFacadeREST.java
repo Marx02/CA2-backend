@@ -132,6 +132,6 @@ public class PersonFacadeREST {
     @Produces(MediaType.APPLICATION_JSON)
     public Response deletePerson(@PathParam("id") int id) {
         Person p = pf.deletePersonById(id);
-        return Response.ok().entity(gson.toJson(p)).build();
+        return Response.ok().entity(gson.toJson(new PersonDTO(p))).build();
     }
 }

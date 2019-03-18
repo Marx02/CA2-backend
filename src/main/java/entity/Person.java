@@ -62,7 +62,7 @@ public class Person implements Serializable {
     @OneToMany(mappedBy = "person",cascade =CascadeType.ALL)
     private Collection<Phone> phoneCollection = new ArrayList();
 //    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
 
     public Person() {

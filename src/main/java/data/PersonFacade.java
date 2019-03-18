@@ -169,6 +169,11 @@ public class PersonFacade {
             pg.setLastName(p.getLastName());
             pg.setEmail(p.getEmail());
             pg.setAddress(p.getAddress());
+            for(Phone ph : p.getPhoneCollection()){
+                pg.addToPhoneCollection(ph);
+            }
+            
+            
             //em.merge(pg);
             em.getTransaction().commit();
             //Query methode:
