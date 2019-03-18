@@ -116,7 +116,7 @@ public class PersonFacadeREST {
     public Response postPerson(String content) {
         Person p = gson.fromJson(content, Person.class);
         pf.addPerson(p);
-        return Response.ok().entity(gson.toJson(p)).build();
+        return Response.ok().entity(gson.toJson(new PersonDTO(p))).build();
     }
 
     @PUT
@@ -124,7 +124,7 @@ public class PersonFacadeREST {
     public Response putPerson(String content) {
         Person p = gson.fromJson(content, Person.class);
         pf.editPerson(p);
-        return Response.ok().entity(gson.toJson(p)).build();
+        return Response.ok().entity(gson.toJson(new PersonDTO(p))).build();
     }
     
     @DELETE
